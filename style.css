@@ -44,7 +44,7 @@ html, body {
   right: 0;
   bottom: 0;
   /* background-color: rgba(0, 0, 0, 0.5); */
-  background: radial-gradient(circle,#00000000 0%, #000000FF 85%);
+  background: radial-gradient(circle,#000000FF 30%, #00000020 50%, #00000020 70%, #000000FF 95%);
   z-index: 0;
 }
 
