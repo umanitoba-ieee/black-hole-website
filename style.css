@@ -1,0 +1,296 @@
+/* =========================
+   Base Reset & Variables
+   ========================= */
+
+:root {
+  --offset-small: 24px;
+  --offset-medium: 48px;
+  --offset-large: 96px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* common for abstract layouts */
+  background: #0e0e11;
+}
+
+/* =========================
+   Background Layer
+   ========================= */
+
+/* .background {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #1b1b2a,
+    #0e0e11 70%
+  );
+  z-index: -1;
+} */
+
+.background::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  background: radial-gradient(circle,#00000000 0%, #000000FF 85%);
+  z-index: 0;
+}
+
+/* =========================
+   Base Element Style
+   ========================= */
+
+.element {
+  position: inherit; /* anchors to viewport */
+  max-width: none; /* allow large scaling */
+  pointer-events: none; /* optional: make decorative */
+}
+
+.bg-elem {
+  /* max-width: 50vw !important; */
+  /* max-height: 50vh !important; */
+  /* width: auto; */
+  /* height: auto; */
+  position: fixed;
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* =========================
+   Anchoring Patterns
+   ========================= */
+
+/* 1. Top-right of element anchored to center of screen */
+.anchor-tr-center {
+  top: 50%;
+  left: 50%;
+
+  /* size scales with viewport */
+  width: min(60vw, 700px);
+
+  /*
+    Move the element so that
+    its TOP-RIGHT corner sits at (50%, 50%)
+  */
+  transform: translate(-100%, 0%);
+}
+
+/* 2. Element always covering bottom-left area */
+.cover-bl {
+  bottom: 0;
+  left: 0;
+
+  /* scale relative to viewport */
+  width: 70vmin;
+  height: auto;
+
+  /*
+    Optional: push it further off-screen
+    for more abstract framing
+  */
+  transform: translate(-20%, 20%);
+}
+
+/* 3. Bottom-right anchored with pixel offset */
+.anchor-br-offset {
+  bottom: var(--offset-medium);
+  right: var(--offset-medium);
+
+  width: 300px;
+}
+
+/* =========================
+   Optional: Debug Helpers
+   ========================= */
+
+
+/* .element {
+  outline: 1px solid rgba(255,255,255,0.2);
+} */
+
+
+.anchor-pos-tl {
+  top: 0%;
+  left: 0%;  
+}
+.anchor-pos-top {
+  top: 0%;
+  left: 50%;  
+}
+.anchor-pos-tr {
+  top: 0%;
+  left: 100%;  
+}
+.anchor-pos-left {
+  top: 50%;
+  left: 0%;  
+}
+.anchor-pos-center {
+  top: 50%;
+  left: 50%;  
+}
+.anchor-pos-right {
+  top: 50%;
+  left: 100%;  
+}
+.anchor-pos-bl {
+  top: 100%;
+  left: 0%;  
+}
+.anchor-pos-bottom {
+  top: 100%;
+  left: 50%;  
+}
+.anchor-pos-br {
+  top: 100%;
+  left: 100%;  
+}
+
+
+.anchor-point-tl {
+  transform: translate(0%, 0%);
+}
+.anchor-point-top {
+  transform: translate(-50%, 0%);
+}
+.anchor-point-tr {
+  transform: translate(-100%, 0%);
+}
+.anchor-point-left {
+  transform: translate(0%, -50%);
+}
+.anchor-point-center {
+  transform: translate(-50%, -50%);
+}
+.anchor-point-right {
+  transform: translate(-100%, -50%);
+}
+.anchor-point-bl {
+  transform: translate(0%, -100%);
+}
+.anchor-point-bottom {
+  transform: translate(-50%, -100%);
+}
+.anchor-point-br {
+  transform: translate(-100%, -100%);
+}
+
+
+
+
+
+
+.linear-warble {
+  animation: linear-warble 6s ease-in-out infinite;
+}
+
+@keyframes linear-warble {
+  0% {
+    transform: translate(-50%, -100%) skewX(0deg) skewY(0deg) rotate(0deg);
+    filter: blur(0px);
+  }
+  25% {
+    transform: translate(-50%, -100%) skewX(2deg) skewY(-1deg) rotate(2deg);
+  }
+  50% {
+    transform: translate(-50%, -100%) skewX(-2deg) skewY(1deg) rotate(-1deg);
+    filter: blur(0.6px);
+  }
+  75% {
+    transform: translate(-50%, -100%) skewX(1deg) skewY(2deg) rotate(1deg);
+  }
+  100% {
+    transform: translate(-50%, -100%) skewX(0deg) skewY(0deg) rotate(0deg);
+    filter: blur(0px);
+  }
+}
+
+.spiral-warp {
+  filter: url(#vortex);
+}
+
+
+
+
+
+
+
+.sine-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* font-weight: 900; */
+  /* font-size: 0.3rem; */
+  /* font-size: 2cqi; */
+  font-size: min(2cqw, 2cqh);
+  /* perspective: 1000px; */
+  color: grey;
+}
+
+.char {
+  display: inline-block;
+  white-space: pre; /* Preserves spaces */
+  
+  /* The Animation */
+  animation: sine-move 4s ease-in-out infinite;
+  /* This calculation creates the "wave" shape across the word */
+  animation-delay: calc(var(--char-index) * -0.15s);
+  --amplitude: 30%;
+  --amplituden: -30%;
+  --angle: 10deg;
+  --anglen: -10deg;
+}
+
+@keyframes sine-move {
+  0%, 100% {
+    /* Top of the wave: move up and tilt left */
+    transform: translateY(var(--amplituden)) rotate(-15deg);
+  }
+  50% {
+    /* Bottom of the wave: move down and tilt right */
+    transform: translateY(var(--amplitude)) rotate(-15deg);
+  }
+}
+
+/* .waaaa {
+  transform: translate(-50%, -50%), rotate(0deg);
+}
+
+@media screen and (orientation: landscape) {
+    .waaaa {
+        transform: translate(-50%, -50%), rotate(90deg);
+    }
+} */
+
+
+/* @media (orientation: portrait) { */
+  /* CSS for portrait view */
+  .waaaa {
+  /* src: './assets/image-0019.png' */
+  /* rotate: 0deg; */
+  transform: translate(-50%, -50%) rotate(0deg) !important;
+}
+/* } */
+@media (orientation: landscape) {
+  /* CSS for landscape view */
+  .waaaa {
+        transform: translate(-50%, -50%) rotate(-90deg) !important;
+    }
+}

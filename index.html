@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Hole Social</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Background / base layer -->
+  <!-- <div class="background"></div> -->
+
+  
+  <!-- Image covering bottom-left, scaling with screen -->
+  <!-- <img
+  src="https://picsum.photos/900/700"
+    alt="Abstract 2"
+    class="element cover-bl"
+    /> -->
+    
+    <!-- Image anchored to bottom-right with offset -->
+    <!-- <img
+    src="https://picsum.photos/400/400"
+    alt="Abstract 3"
+    class="element anchor-br-offset"
+    /> -->
+
+    
+    
+    <!-- BACKGROUND -->
+    <div class="background">
+      <div style="width: 50vw; height: 50vh; overflow: hidden;">
+        <img
+        src="./assets/image-0013.jpg"
+        class="element bg-elem anchor-pos-center anchor-point-br"
+        />
+      </div>
+      <div style="width: 50vw; height: 50vh; overflow: hidden;">
+        <img
+        src="./assets/image-0016.jpg"
+        class="element bg-elem anchor-pos-center anchor-point-bl"
+        />
+      </div>
+      <div style="width: 50vw; height: 50vh; overflow: hidden;">
+        <img
+        src="./assets/image-0014.jpg"
+        class="element bg-elem anchor-pos-center anchor-point-tr"
+        />
+      </div>
+      <div style="width: 50vw; height: 50vh; overflow: hidden;">
+        <img
+        src="./assets/image-0015.jpg"
+        class="element bg-elem anchor-pos-center anchor-point-tl"
+        />
+      </div>
+    </div>
+
+
+    <!-- team logos -->
+     <div style="
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      width: min(100vw, 100vh);
+      /* aspect-ratio: 1 / 1; */
+      transform: translate(-50%, -50%);
+      /* border: 5px dotted blue; */
+      z-index: 1;
+    "
+    >
+      <!-- umsats -->
+      <img
+        src="./assets/image-0021.png"
+        class="element anchor-point-center"
+        style="
+          top: 8%;
+          left: 20%;
+          width: 20%;
+          max-width: 160px;
+        "
+      />
+      <!-- umrt -->
+      <img
+        src="./assets/image-0022.png"
+        class="element anchor-point-center"
+        style="
+          top: 8%;
+          left: 50%;
+          width: 15%;
+          max-width: 120px;
+        "
+      />
+      <!-- umieee -->
+      <img
+        src="./assets/image-0020.png"
+        class="element anchor-point-center"
+        style="
+          top: 8%;
+          left: 80%;
+          width: 20%;
+          max-width: 160px;
+        "
+      />
+    </div>
+
+    <!-- center logo area -->
+    <div style="
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: min(100vw, 100vh);
+      aspect-ratio: 1 / 1;
+      transform: translate(-50%, -50%);
+      /* border: 5px dotted red; */
+    "
+    >
+      <!-- main black hole image -->
+      <img
+        src="./assets/image-0019.png"
+        class="element anchor-pos-center anchor-point-center spiral-warp waaaa"
+        style="
+          /* max-width: 120%; */
+          /* max-height: 480%; */
+          width: 120%;
+          height: auto;
+        "
+      />
+        <!-- <img src="./assets/image-0019.png" class="spiral-warp"> -->
+        <!-- <canvas id="gl" style="z-index: 50; display: block;"></canvas>
+        <img id="src" src="./assets/image-0019.png" style="display:none"> -->
+
+      
+      
+      <svg width="0" height="0">
+        <filter id="vortex">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.9"
+            numOctaves="1"
+            seed="8"
+            result="noise">
+            <animate
+              attributeName="baseFrequency"
+              dur="60s"
+              values="0.006;0.012;0.006"
+              repeatCount="indefinite" />
+          </feTurbulence>
+
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="10"
+            xChannelSelector="R"
+            yChannelSelector="G" />
+        </filter>
+      </svg>
+
+      
+      <div id="wave-text" class="sine-container element anchor-pos-center anchor-point-center">
+        get sucked in a black hole
+      </div>
+
+
+      <!-- black hole text -->
+      <img
+        src="./assets/image-0085.png"
+        class="element anchor-pos-center anchor-point-bottom"
+        style="
+          top: 62%;
+          width: 70%;
+          animation: linear-warble 6s ease-in-out infinite;
+          animation-delay: 0s;
+        "
+      />
+      <!-- social text -->
+      <img
+        src="./assets/image-0090.png"
+        class="element anchor-pos-center anchor-point-top"
+        style="
+          top: 82%;
+          width: 50%;
+          animation: linear-warble 6s ease-in-out infinite;
+          animation-delay: -2s;
+        "
+      />
+
+
+
+      <img
+        src="./assets/image-0117.png"
+        class="element anchor-pos-center anchor-point-top"
+        style="
+          top: 82%;
+          left: 90%;
+          width: 15%;
+          rotate: -60deg;
+          animation: linear-warble 6s ease-in-out infinite;
+          animation-delay: -2s;
+        "
+      />
+      <img
+        src="./assets/image-0138.png"
+        class="element anchor-pos-center anchor-point-top"
+        style="
+          top: 82%;
+          left: 20%;
+          width: 10%;
+          rotate: -20deg;
+          animation: linear-warble 6s ease-in-out infinite;
+          animation-delay: -2s;
+        "
+      />
+    </div>
+
+
+
+<script>
+  const textContainer = document.getElementById('wave-text');
+  const text = textContainer.innerText;
+  textContainer.innerHTML = '';
+
+  // Split text into individual spans and assign an index variable
+  [...text].forEach((char, i) => {
+    const span = document.createElement('span');
+    span.innerText = char;
+    span.classList.add('char');
+    span.style.setProperty('--char-index', i);
+    textContainer.appendChild(span);
+  });
+</script>
+</body>
+</html>
