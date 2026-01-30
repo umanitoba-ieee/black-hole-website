@@ -170,19 +170,29 @@
         style="
           top: 68%;
           width: 75%;
-          animation: linear-warble 6s ease-in-out infinite;
-          animation-delay: 0s;
+          /* animation: linear-warble 6s ease-in-out infinite; */
+          /* animation-delay: 0s; */
+          animation-name: linear-warble, rainbow-hue;
+          animation-timing-function: ease-in-out, linear;
+          animation-duration: 6s, 3s;
+          animation-iteration-count: infinite, infinite;
+          animation-delay: 0s, 0s;
         "
       />
       <!-- social text -->
       <img
         src="./assets/image-0090.png"
-        class="element anchor-pos-center anchor-point-top"
+        class="element anchor-pos-center anchor-point-bottom"
         style="
           top: 82%;
           width: 50%;
-          animation: linear-warble 6s ease-in-out infinite;
-          animation-delay: -2s;
+          /* animation: linear-warble 6s ease-in-out infinite; */
+          /* animation-delay: -2s; */
+          animation-name: linear-warble, rainbow-hue;
+          animation-timing-function: ease-in-out, linear;
+          animation-duration: 6s, 3s;
+          animation-iteration-count: infinite, infinite;
+          animation-delay: -2s, 0s;
         "
       />
 
@@ -256,11 +266,11 @@
         class="element anchor-pos-center anchor-point-top"
         style="
           top: 95%;
-          left: 10%;
-          width: 10%;
+          left: 12%;
+          width: 20%;
           /* rotate: 60deg; */
           animation: linear-warble 6s ease-in-out infinite;
-          animation-delay: -2s;
+          animation-delay: -2s; 
         "
       />
 
